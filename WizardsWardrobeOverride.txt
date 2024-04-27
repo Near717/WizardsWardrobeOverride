@@ -1,0 +1,33 @@
+## Title: Wizards Wardrobe Override data
+## Author: |cCC99FFnotnear|r, |cFF3333Shadowinplay|r
+## Description: Overrides global constans and functions to support substitute setups for dungeons
+## Version: 1.0
+## APIVersion: 101041 101042
+## DependsOn: WizardsWardrobe WizardsWardrobeDungeons
+
+## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates.
+## The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States and/or other countries.
+## All rights reserved.
+##
+## You can read the full terms at https://account.elderscrollsonline.com/add-on-terms
+
+zones/GEN.lua
+zones/SUB.lua
+zones/DG.lua
+zones/PVP.lua
+zones/AA.lua
+zones/SO.lua
+zones/HRC.lua
+zones/MOL.lua
+zones/HOF.lua
+zones/AS.lua
+zones/CR.lua
+zones/SS.lua
+zones/KA.lua
+zones/RG.lua
+zones/DSR.lua
+zones/SE.lua
+zones/BRP.lua
+zones/EA.lua
+
+WizardsWardrobeOverride.lua
