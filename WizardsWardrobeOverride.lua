@@ -145,7 +145,7 @@ local function overrideFuncs()
                     if not baseAbilityId then return end
 
                     local skillType, skillLine, skillIndex = GetSpecificSkillAbilityKeysByAbilityId( baseAbilityId )
-                    if CallSecureProtected( skillIndex, skillType, skillLine, "PickupAbilityBySkillLine" ) then
+                    if CallSecureProtected( "PickupAbilityBySkillLine", skillType, skillLine, skillIndex ) then
                         setup:SetSkill( hotbarCategory, slotIndex, 0 )
                         setup:ToStorage( WW.selection.zone.tag, WW.selection.pageId, index )
                         self:GetHandler( "OnMouseExit" )()
@@ -434,15 +434,15 @@ local function overrideFuncs()
 
         local deleteColor = #WW.pages[ zone.tag ] > 1 and ZO_ColorDef:New( 1, 0, 0, 1 ) or ZO_ColorDef:New( 0.35, 0.35, 0.35, 1 )
         AddMenuItem( GetString( WW_DELETE ):upper(), function()
-                         if #WW.pages[ zone.tag ] > 1 then
-                             local pageName = WW.pages[ zone.tag ][ pageId ].name
-                             WWG.ShowConfirmationDialog( "DeletePageConfirmation",
-                                                         string.format( GetString( WW_DELETEPAGE_WARNING ), pageName ),
-                                                         function()
-                                                             WWG.DeletePage()
-                                                         end )
-                         end
-                     end, MENU_ADD_OPTION_LABEL, "ZoFontGameBold", deleteColor, deleteColor )
+            if #WW.pages[ zone.tag ] > 1 then
+                local pageName = WW.pages[ zone.tag ][ pageId ].name
+                WWG.ShowConfirmationDialog( "DeletePageConfirmation",
+                    string.format( GetString( WW_DELETEPAGE_WARNING ), pageName ),
+                    function()
+                        WWG.DeletePage()
+                    end )
+            end
+        end, MENU_ADD_OPTION_LABEL, "ZoFontGameBold", deleteColor, deleteColor )
 
         -- lets fix some ZOS bugs(?)
         if control:GetWidth() >= ZO_Menu.width then
@@ -463,8 +463,8 @@ local function overrideFuncs()
 
         -- LINK TO CHAT
         AddMenuItem( GetString( SI_ITEM_ACTION_LINK_TO_CHAT ), function()
-                         WW.preview.PrintPreviewString( zone, pageId, index )
-                     end, MENU_ADD_OPTION_LABEL )
+            WW.preview.PrintPreviewString( zone, pageId, index )
+        end, MENU_ADD_OPTION_LABEL )
 
         -- CUSTOM CODE
         AddMenuItem( GetString( WW_CUSTOMCODE ), function() WW.code.ShowCodeDialog( zone, pageId, index ) end,
@@ -485,13 +485,13 @@ local function overrideFuncs()
 
         -- DELETE
         AddMenuItem( GetString( WW_DELETE ):upper(), function()
-                         PlaySound( SOUNDS.DEFER_NOTIFICATION )
-                         if WW.selection.zone.tag == "SUB" or WW.selection.zone.tag == "DG" then
-                             WW.ClearSetup( zone, pageId, index )
-                         else
-                             WW.DeleteSetup( zone, pageId, index )
-                         end
-                     end, MENU_ADD_OPTION_LABEL, "ZoFontGameBold", ZO_ColorDef:New( 1, 0, 0, 1 ), ZO_ColorDef:New( 1, 0, 0, 1 ) )
+            PlaySound( SOUNDS.DEFER_NOTIFICATION )
+            if WW.selection.zone.tag == "SUB" or WW.selection.zone.tag == "DG" then
+                WW.ClearSetup( zone, pageId, index )
+            else
+                WW.DeleteSetup( zone, pageId, index )
+            end
+        end, MENU_ADD_OPTION_LABEL, "ZoFontGameBold", ZO_ColorDef:New( 1, 0, 0, 1 ), ZO_ColorDef:New( 1, 0, 0, 1 ) )
 
         -- lets fix some ZOS bugs(?)
         if control:GetWidth() >= ZO_Menu.width then
@@ -506,100 +506,9 @@ local function overrideFuncs()
 
 end
 
-
--- not needed anymore
---[[ local function overrideConst()
-    WW.BUFFFOOD = {
-        [64711] = 68411,	-- Crown Fortifying Meal
-        [64712] = 68416,	-- Crown Refreshing Drink
-        [68233] = 61259,	-- Garlic-and-Pepper Venison Steak
-        [68234] = 61259,	-- Millet and Beef Stuffed Peppers
-        [68235] = 61259,	-- Lilmoth Garlic Hagfish
-        [68236] = 61260,	-- Firsthold Fruit and Cheese Plate
-        [68237] = 61260,	-- Thrice-Baked Gorapple Pie
-        [68238] = 61260,	-- Tomato Garlic Chutney
-        [68239] = 61261,	-- Hearty Garlic Corn Chowder
-        [68240] = 61261,	-- Bravil's Best Beet Risotto
-        [68241] = 61261,	-- Tenmar Millet-Carrot Couscous
-        [68242] = 61257,	-- Mistral Banana-Bunny Hash
-        [68243] = 61257,	-- Melon-Baked Parmesan Pork
-        [68244] = 61257,	-- Solitude Salmon-Millet Soup
-        [68245] = 61255,	-- Sticky Pork and Radish Noodles
-        [68246] = 61255,	-- Garlic Cod with Potato Crust
-        [68247] = 61255,	-- Braised Rabbit with Spring Vegetables
-        [68248] = 61294,	-- Chevre-Radish Salad with Pumpkin Seeds
-        [68249] = 61294,	-- Grapes and Ash Yam Falafel
-        [68250] = 61294,	-- Late Hearthfire Vegetable Tart
-        [68251] = 61218,	-- Capon Tomato-Beet Casserole
-        [68252] = 61218,	-- Jugged Rabbit in Preserves
-        [68253] = 61218,	-- Longfin Pasty with Melon Sauce
-        [68254] = 61218,	-- Withered Tree Inn Venison Pot Roast
-        [68255] = 61322,	-- Kragenmoor Zinger Mazte
-        [68256] = 61322,	-- Colovian Ginger Beer
-        [68257] = 61322,	-- Markarth Mead
-        [68258] = 61325,	-- Heart's Day Rose Tea
-        [68259] = 61325,	-- Soothing Bard's-Throat Tea
-        [68260] = 61325,	-- Muthsera's Remorse
-        [68261] = 61328,	-- Fredas Night Infusion
-        [68262] = 61328,	-- Old Hegathe Lemon Kaveh
-        [68263] = 61328,	-- Hagraven's Tonic
-        [68264] = 61335,	-- Port Hunding Pinot Noir
-        [68265] = 61335,	-- Dragontail Blended Whisky
-        [68266] = 61335,	-- Bravil Bitter Barley Beer
-        [68267] = 61340,	-- Wide-Eye Double Rye
-        [68268] = 61340,	-- Camlorn Sweet Brown Ale
-        [68269] = 61340,	-- Flowing Bowl Green Port
-        [68270] = 61345,	-- Honest Lassie Honey Tea
-        [68271] = 61345,	-- Rosy Disposition Tonic
-        [68272] = 61345,	-- Cloudrest Clarified Coffee
-        [68273] = 61350,	-- Senche-Tiger Single Malt
-        [68274] = 61350,	-- Velothi View Vintage Malbec
-        [68275] = 61350,	-- Orcrest Agony Pale Ale
-        [68276] = 61350,	-- Lusty Argonian Maid Mazte
-        [71056] = 72816,	-- Orzorga's Red Frothgar
-        [71057] = 72819,	-- Orzorga's Tripe Trifle Pocket
-        [71058] = 72822,	-- Orzorga's Blood Price Pie
-        [71059] = 72824,	-- Orzorga's Smoked Bear Haunch
-        [87685] = 84678,	-- Sweet Sanguine Apples
-        [87686] = 84681,	-- Crisp and Crunchy Pumpkin Snack Skewer
-        [87687] = 84700,	-- Bowl of "Peeled Eyeballs"
-        [87690] = 84704,	-- Witchmother's Party Punch
-        [87691] = 84709,	-- Crunchy Spider Skewer
-        [87695] = 84720,	-- Ghastly Eye Bowl
-        [87696] = 84725,	-- Frosted Brains
-        [87697] = 84731,	-- Witchmother's Potent Brew
-        [87699] = 84735,	-- Purifying Bloody Mara
-        [94437] = 85484,	-- Crown Crate Fortifying Meal
-        [94438] = 85497,	-- Crown Crate Refreshing Drink
-        [101879] = 86559,	-- Hissmir Fish-Eye Rye
-        [112425] = 86673,	-- Lava Foot Soup-and-Saltrice
-        [112426] = 86677,	-- Bergama Warning Fire
-        [112433] = 86746,	-- Betnikh Twice-Spiked Ale
-        [112434] = 86749,	-- Jagga-Drenched "Mud Ball"
-        [112435] = 84678,	-- Old Aldmeri Orphan Gruel
-        [112438] = 86787,	-- Rajhin's Sugar Claws
-        [112439] = 86789,	-- Alcaire Festival Sword-Pie
-        [112440] = 86791,	-- Snow Bear Glow-Wine
-        [120436] = 84678,	-- Princess's Delight
-        [120762] = 89955,	-- Candied Jester's Coins
-        [120763] = 89957,	-- Dubious Camoran Throne
-        [120764] = 89971,	-- Jewels of Misrule
-        [133554] = 100502,	-- Deregulated Mushroom Stew
-        [133555] = 100488,	-- Spring-Loaded Infusion
-        [133556] = 100498,	-- Clockwork Citrus Filet
-        [139016] = 107748,	-- Artaeum Pickled Fish Bowl
-        [139018] = 107789,	-- Artaeum Takeaway Broth
-        [153625] = 127531,	-- Corrupting Bloody Mara
-        [153627] = 127572,	-- Pack Leader's Bone Broth
-        [153629] = 127596,	-- Bewitched Sugar Skulls
-        [171322] = 148633,	-- Sparkling Mudcrab Apple Cider
-    }
-end ]]
-
 local function Init()
     if WW == nil then return end
-    -- overrideFuncs()
-    -- overrideConst()
+    overrideFuncs()
 end
 
 local function OnAddOnLoaded(_, addonName)
