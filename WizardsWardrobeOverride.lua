@@ -9,7 +9,7 @@ local WWG = WW.gui
 
 local function overrideFuncs()
 
-    function WW.LoadSetupSubstitute( index )
+    local function myLoadSetupSubstitute( index )
         if not WW.zones[ "SUB" ] or not WW.pages[ "SUB" ] then return end
 
         local isTrial = false
@@ -26,8 +26,9 @@ local function overrideFuncs()
             WW.LoadSetup( WW.zones[ "DG" ], WW.pages[ "DG" ][ 0 ].selected, index, true )
         end
     end
+    WW["LoadSetupSubstitute"] = myLoadSetupSubstitute
 
-    function WWG.OnZoneSelect( zone )
+    local function myOnZoneSelect( zone )
         PlaySound( SOUNDS.TABLET_PAGE_TURN )
 
         if not WW.pages[ zone.tag ] then
@@ -63,8 +64,9 @@ local function overrideFuncs()
         WizardsWardrobeWindowTopMenuTeleportTrial:SetDesaturation( IsInAvAZone() and 1 or 0 )
         WizardsWardrobeWindowTopMenuTeleportHouse:SetEnabled( not IsInAvAZone() )
     end
+    WWG["OnZoneSelect"] = myOnZoneSelect
 
-    function WWG.AquireSetupControl( setup )
+    local function myAquireSetupControl( setup )
         local setupControl, key = WWG.setupPool:AcquireObject()
         table.insert( WWG.setupTable, key )
         local index = #WWG.setupTable
@@ -393,8 +395,9 @@ local function overrideFuncs()
 
         return setupControl
     end
+    WWG["AquireSetupControl"] = myAquireSetupControl
 
-    function WWG.BuildPage( zone, pageId, scroll )
+    local function myBuildPage( zone, pageId, scroll )
         WWG.ClearPage()
         for entry in WW.PageIterator( zone, pageId ) do
             local setup = Setup:FromStorage( zone.tag, pageId, entry.index )
@@ -412,8 +415,9 @@ local function overrideFuncs()
             ZO_Scroll_ResetToTop( WizardsWardrobeWindowSetupList )
         end
     end
+    WWG["BuildPage"] = myBuildPage
 
-    function WWG.ShowPageContextMenu( control )
+    local function myShowPageContextMenu( control )
         local zone = WW.selection.zone
         local pageId = WW.selection.pageId
 
@@ -449,8 +453,9 @@ local function overrideFuncs()
         SetMenuPad( 100 )
         AnchorMenu( control, 0 )
     end
+    WWG["ShowPageContextMenu"] = myShowPageContextMenu
 
-    function WWG.ShowSetupContextMenu( control, index )
+    local function myShowSetupContextMenu( control, index )
         local zone = WW.selection.zone
         local pageId = WW.selection.pageId
 
@@ -497,9 +502,13 @@ local function overrideFuncs()
         SetMenuPad( 100 )
         AnchorMenu( control, 0 )
     end
+    WWG["ShowSetupContextMenu"] = myShowSetupContextMenu
+
 end
 
-local function overrideConst()
+
+-- not needed anymore
+--[[ local function overrideConst()
     WW.BUFFFOOD = {
         [64711] = 68411,	-- Crown Fortifying Meal
         [64712] = 68416,	-- Crown Refreshing Drink
@@ -585,12 +594,12 @@ local function overrideConst()
         [153629] = 127596,	-- Bewitched Sugar Skulls
         [171322] = 148633,	-- Sparkling Mudcrab Apple Cider
     }
-end
+end ]]
 
 local function Init()
     if WW == nil then return end
-    overrideFuncs()
-    overrideConst()
+    -- overrideFuncs()
+    -- overrideConst()
 end
 
 local function OnAddOnLoaded(_, addonName)
