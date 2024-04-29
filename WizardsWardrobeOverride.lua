@@ -2,7 +2,7 @@ WizardsWardrobeOverride = {
     name = "WizardsWardrobeOverride"
 }
 
-local WWNS = WizardsWardrobeOverride
+local WWO = WizardsWardrobeOverride
 
 local WW = WizardsWardrobe
 local WWG = WW.gui
@@ -523,9 +523,9 @@ local function Init()
 end
 
 local function OnAddOnLoaded(_, addonName)
-	if addonName ~= WWNS.name then return end
-    EVENT_MANAGER:UnregisterForEvent(WWNS.name, EVENT_ADD_ON_LOADED)
+	if addonName ~= WWO.name then return end
+    EVENT_MANAGER:UnregisterForEvent(WWO.name, EVENT_ADD_ON_LOADED)
     Init()
 end
 
-EVENT_MANAGER:RegisterForEvent(WWNS.name, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
+EVENT_MANAGER:RegisterForEvent(WWO.name, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
