@@ -1,6 +1,10 @@
 local strings = {
 	-- BOSS & TRIAL NAMES
+	WW_BOSS = "Boss",
+
 	WW_DG_NAME = "Substitute Dungeon",
+
+	WW_IA_ARAMIL = "Aramil",
 }
 
 for stringId, stringValue in pairs(strings) do

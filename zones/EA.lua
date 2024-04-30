@@ -8,14 +8,17 @@ IA.icon = "/esoui/art/icons/achievement_u40_ed2_defeat_final_boss_50.dds"
 IA.priority = 14
 IA.id = 1436
 IA.node = 550
-IA.trial = true
+--IA.trial = true
 
 IA.bosses = {
 	[1] = {
 		name = GetString(WW_TRASH),
 	},
 	[2] = {
-		name = GetString(WW_SUB_BOSS),
+		name = GetString(WW_BOSS),
+	},
+	[3] = {
+		name = GetString(WW_IA_ARAMIL),
 	},
 }
 
@@ -29,7 +32,7 @@ end
 
 function IA.OnBossChange(bossName)
 	if #bossName > 0 then
-		WW.conditions.OnBossChange(GetString(WW_SUB_BOSS))
+		WW.conditions.OnBossChange(GetString(WW_BOSS))
 	else
 		WW.conditions.OnBossChange(bossName)
 	end
