@@ -4,7 +4,7 @@ local SUB = WW.zones["DG"]
 
 SUB.name = "Substitute Dungeon"
 SUB.tag = "DG"
-SUB.icon = "/WizardsWardrobeOverride/assets/dungeons.dds"
+SUB.icon = "/WizardsWardrobeOverride/assets/green.dds"
 SUB.priority = -1
 SUB.id = -1
 SUB.node = -1

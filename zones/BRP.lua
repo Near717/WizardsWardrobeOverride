@@ -77,8 +77,8 @@ function BRP.Init()
 	EVENT_MANAGER:RegisterForUpdate(WW.name .. BRP.tag .. "MovementLoop", 2000, BRP.OnMovement)
 	EVENT_MANAGER:RegisterForEvent(WW.name .. BRP.tag, EVENT_PLAYER_COMBAT_STATE, BRP.OnCombatChange)
 
-	EVENT_MANAGER:RegisterForEvent(WW.name  .. BRP.tag.. "PortalSpawn", EVENT_COMBAT_EVENT, BRP.OnPortalSpawn)
-	EVENT_MANAGER:AddFilterForEvent(WW.name  .. BRP.tag.. "PortalSpawn", EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, BRP.PORTALID)
+	EVENT_MANAGER:RegisterForEvent(WW.name .. BRP.tag .. "PortalSpawn", EVENT_COMBAT_EVENT, BRP.OnPortalSpawn)
+	EVENT_MANAGER:AddFilterForEvent(WW.name .. BRP.tag .. "PortalSpawn", EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, BRP.PORTALID)
 	EVENT_MANAGER:RegisterForEvent(WW.name .. BRP.tag .. "LastWave", EVENT_DISPLAY_ANNOUNCEMENT, BRP.OnLastWave)
 end
 
@@ -87,7 +87,7 @@ function BRP.Reset()
 	EVENT_MANAGER:UnregisterForUpdate(WW.name .. BRP.tag .. "MovementLoop")
 	EVENT_MANAGER:RegisterForEvent(WW.name, EVENT_BOSSES_CHANGED, WW.OnBossChange)
 
-	EVENT_MANAGER:UnregisterForEvent(WW.name  .. BRP.tag.. "PortalSpawn")
+	EVENT_MANAGER:UnregisterForEvent(WW.name .. BRP.tag .. "PortalSpawn")
 	EVENT_MANAGER:UnregisterForEvent(WW.name .. BRP.tag .. "LastWave")
 end
 
@@ -118,33 +118,21 @@ function BRP.GetStageByLocation()
 
 	if x > BRP.LOCATIONS.FIRST.x1 and x < BRP.LOCATIONS.FIRST.x2
 		and z > BRP.LOCATIONS.FIRST.z1 and z < BRP.LOCATIONS.FIRST.z2 then
-
 		return 1
-
 	elseif x > BRP.LOCATIONS.SECOND.x1 and x < BRP.LOCATIONS.SECOND.x2
 		and z > BRP.LOCATIONS.SECOND.z1 and z < BRP.LOCATIONS.SECOND.z2 then
-
 		return 2
-
 	elseif x > BRP.LOCATIONS.THIRD.x1 and x < BRP.LOCATIONS.THIRD.x2
 		and z > BRP.LOCATIONS.THIRD.z1 and z < BRP.LOCATIONS.THIRD.z2 then
-
 		return 3
-
 	elseif x > BRP.LOCATIONS.FORTH.x1 and x < BRP.LOCATIONS.FORTH.x2
 		and z > BRP.LOCATIONS.FORTH.z1 and z < BRP.LOCATIONS.FORTH.z2 then
-
 		return 4
-
 	elseif x > BRP.LOCATIONS.FIFTH.x1 and x < BRP.LOCATIONS.FIFTH.x2
 		and z > BRP.LOCATIONS.FIFTH.z1 and z < BRP.LOCATIONS.FIFTH.z2 then
-
 		return 5
-
 	else
-
 		return 0
-
 	end
 end
 
@@ -172,19 +160,19 @@ function BRP.Wave()
 	if stage == 1 then
 		if round == 4 and wave == 3 then WW.OnBossChange(_, true, GetString(WW_BRP_FIRST)) end
 
-	-- STAGE 2
+		-- STAGE 2
 	elseif stage == 2 then
 		if round == 4 and wave == 2 then WW.OnBossChange(_, true, GetString(WW_BRP_SECOND)) end
 
-	-- STAGE 3
+		-- STAGE 3
 	elseif stage == 3 then
 		if round == 4 and wave == 3 then WW.OnBossChange(_, true, GetString(WW_BRP_THIRD)) end
 
-	-- STAGE 4
+		-- STAGE 4
 	elseif stage == 4 then
 		if round == 4 and wave == 3 then WW.OnBossChange(_, true, GetString(WW_BRP_FOURTH)) end
 
-	-- STAGE 5
+		-- STAGE 5
 	elseif stage == 5 then
 		if round == 4 and wave == 3 then WW.OnBossChange(_, true, GetString(WW_BRP_FIFTH)) end
 	end

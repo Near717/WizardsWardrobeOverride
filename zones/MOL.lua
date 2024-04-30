@@ -86,21 +86,15 @@ function MOL.GetBossByLocation()
 	if x > MOL.LOCATIONS.ZHAJHASSA.x1 and x < MOL.LOCATIONS.ZHAJHASSA.x2
 		and y > MOL.LOCATIONS.ZHAJHASSA.y1 and y < MOL.LOCATIONS.ZHAJHASSA.y2
 		and z > MOL.LOCATIONS.ZHAJHASSA.z1 and z < MOL.LOCATIONS.ZHAJHASSA.z2 then
-
 		return GetString(WW_MOL_ZHAJHASSA)
-
 	elseif x > MOL.LOCATIONS.TWINS.x1 and x < MOL.LOCATIONS.TWINS.x2
 		and y > MOL.LOCATIONS.TWINS.y1 and y < MOL.LOCATIONS.TWINS.y2
 		and z > MOL.LOCATIONS.TWINS.z1 and z < MOL.LOCATIONS.TWINS.z2 then
-
 		return GetString(WW_MOL_TWINS)
-
 	elseif x > MOL.LOCATIONS.RAKKHAT.x1 and x < MOL.LOCATIONS.RAKKHAT.x2
 		and y > MOL.LOCATIONS.RAKKHAT.y1 and y < MOL.LOCATIONS.RAKKHAT.y2
 		and z > MOL.LOCATIONS.RAKKHAT.z1 and z < MOL.LOCATIONS.RAKKHAT.z2 then
-
 		return GetString(WW_MOL_RAKKHAT)
-
 	else
 		return GetString(WW_TRASH)
 	end

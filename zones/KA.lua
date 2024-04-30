@@ -86,21 +86,15 @@ function KA.GetBossByLocation()
 	if x > KA.LOCATIONS.YANDIR.x1 and x < KA.LOCATIONS.YANDIR.x2
 		and y > KA.LOCATIONS.YANDIR.y1 and y < KA.LOCATIONS.YANDIR.y2
 		and z > KA.LOCATIONS.YANDIR.z1 and z < KA.LOCATIONS.YANDIR.z2 then
-
 		return GetString(WW_KA_YANDIR)
-
 	elseif x > KA.LOCATIONS.VROL.x1 and x < KA.LOCATIONS.VROL.x2
 		and y > KA.LOCATIONS.VROL.y1 and y < KA.LOCATIONS.VROL.y2
 		and z > KA.LOCATIONS.VROL.z1 and z < KA.LOCATIONS.VROL.z2 then
-
 		return GetString(WW_KA_VROL)
-
 	elseif x > KA.LOCATIONS.FALGRAVN.x1 and x < KA.LOCATIONS.FALGRAVN.x2
 		and y > KA.LOCATIONS.FALGRAVN.y1 and y < KA.LOCATIONS.FALGRAVN.y2
 		and z > KA.LOCATIONS.FALGRAVN.z1 and z < KA.LOCATIONS.FALGRAVN.z2 then
-
 		return GetString(WW_KA_FALGRAVN)
-
 	else
 		return GetString(WW_TRASH)
 	end

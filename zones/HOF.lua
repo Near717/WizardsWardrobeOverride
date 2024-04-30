@@ -106,7 +106,6 @@ function HOF.GetBossByLocation()
 	if x > HOF.LOCATIONS.HUNTERFACTOTUM.x1 and x < HOF.LOCATIONS.HUNTERFACTOTUM.x2
 		and y > HOF.LOCATIONS.HUNTERFACTOTUM.y1 and y < HOF.LOCATIONS.HUNTERFACTOTUM.y2
 		and z > HOF.LOCATIONS.HUNTERFACTOTUM.z1 and z < HOF.LOCATIONS.HUNTERFACTOTUM.z2 then
-
 		-- if player reloads/crashes/ports in after hunter killers are dead
 		if GetUnitName("boss1") == GetString(WW_HOF_FACTOTUM) then
 			HOF.isHunterkillerDead = true
@@ -119,28 +118,20 @@ function HOF.GetBossByLocation()
 		else
 			return GetString(WW_HOF_HUNTERKILLER)
 		end
-
 	elseif x > HOF.LOCATIONS.SPIDER.x1 and x < HOF.LOCATIONS.SPIDER.x2
 		and y > HOF.LOCATIONS.SPIDER.y1 and y < HOF.LOCATIONS.SPIDER.y2
 		and z > HOF.LOCATIONS.SPIDER.z1 and z < HOF.LOCATIONS.SPIDER.z2 then
-
 		return GetString(WW_HOF_SPIDER)
-
 	elseif x > HOF.LOCATIONS.COMMITEE.x1 and x < HOF.LOCATIONS.COMMITEE.x2
 		and y > HOF.LOCATIONS.COMMITEE.y1 and y < HOF.LOCATIONS.COMMITEE.y2
 		and z > HOF.LOCATIONS.COMMITEE.z1 and z < HOF.LOCATIONS.COMMITEE.z2 then
-
 		return GetString(WW_HOF_COMMITEE)
-
 	elseif x > HOF.LOCATIONS.GENERAL.x1 and x < HOF.LOCATIONS.GENERAL.x2
 		and y > HOF.LOCATIONS.GENERAL.y1 and y < HOF.LOCATIONS.GENERAL.y2
 		and z > HOF.LOCATIONS.GENERAL.z1 and z < HOF.LOCATIONS.GENERAL.z2 then
-
 		return GetString(WW_HOF_GENERAL)
-
 	else
-
-		return ""--GetString(WW_TRASH)
+		return "" --GetString(WW_TRASH)
 	end
 end
 

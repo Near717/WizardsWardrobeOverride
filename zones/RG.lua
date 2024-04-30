@@ -109,33 +109,23 @@ function RG.GetBossByLocation()
 	if x > RG.LOCATIONS.OAXILTSO.x1 and x < RG.LOCATIONS.OAXILTSO.x2
 		and y > RG.LOCATIONS.OAXILTSO.y1 and y < RG.LOCATIONS.OAXILTSO.y2
 		and z > RG.LOCATIONS.OAXILTSO.z1 and z < RG.LOCATIONS.OAXILTSO.z2 then
-
 		return GetString(WW_RG_OAXILTSO)
-
 	elseif x > RG.LOCATIONS.BAHSEI.x1 and x < RG.LOCATIONS.BAHSEI.x2
 		and y > RG.LOCATIONS.BAHSEI.y1 and y < RG.LOCATIONS.BAHSEI.y2
 		and z > RG.LOCATIONS.BAHSEI.z1 and z < RG.LOCATIONS.BAHSEI.z2 then
-
 		return GetString(WW_RG_BAHSEI)
-
 	elseif x > RG.LOCATIONS.XALVAKKA.x1 and x < RG.LOCATIONS.XALVAKKA.x2
 		and y > RG.LOCATIONS.XALVAKKA.y1 and y < RG.LOCATIONS.XALVAKKA.y2
 		and z > RG.LOCATIONS.XALVAKKA.z1 and z < RG.LOCATIONS.XALVAKKA.z2 then
-
 		return GetString(WW_RG_XALVAKKA)
-
 	elseif x > RG.LOCATIONS.SNAKE.x1 and x < RG.LOCATIONS.SNAKE.x2
 		and y > RG.LOCATIONS.SNAKE.y1 and y < RG.LOCATIONS.SNAKE.y2
 		and z > RG.LOCATIONS.SNAKE.z1 and z < RG.LOCATIONS.SNAKE.z2 then
-
 		return GetString(WW_RG_SNAKE)
-
 	elseif x > RG.LOCATIONS.ASHTITAN.x1 and x < RG.LOCATIONS.ASHTITAN.x2
 		and y > RG.LOCATIONS.ASHTITAN.y1 and y < RG.LOCATIONS.ASHTITAN.y2
 		and z > RG.LOCATIONS.ASHTITAN.z1 and z < RG.LOCATIONS.ASHTITAN.z2 then
-
 		return GetString(WW_RG_ASHTITAN)
-
 	else
 		return GetString(WW_TRASH)
 	end
