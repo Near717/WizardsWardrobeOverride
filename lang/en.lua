@@ -4,7 +4,7 @@ local strings = {
 
 	WW_DG_NAME = "Substitute Dungeon",
 
-	WW_IA_ARAMIL = "Aramil",
+	WW_IA_ARAMRIL = "Aramril",
 }
 
 for stringId, stringValue in pairs(strings) do

@@ -1,7 +1,7 @@
 ## Title: Wizards Wardrobe Override data
 ## Author: |cCC99FFnotnear|r, |cFF3333Shadowinplay|r
 ## Description: Overrides functions to support substitute setups for dungeons
-## Version: 1.1.0
+## Version: 1.1
 ## APIVersion: 101041 101042
 ## DependsOn: WizardsWardrobe WizardsWardrobeDungeons
 

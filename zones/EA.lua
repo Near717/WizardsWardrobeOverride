@@ -18,7 +18,7 @@ IA.bosses = {
 		name = GetString(WW_BOSS),
 	},
 	[3] = {
-		name = GetString(WW_IA_ARAMIL),
+		name = GetString(WW_IA_ARAMRIL),
 	},
 }
 
