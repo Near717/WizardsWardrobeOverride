@@ -2,7 +2,7 @@ local WW = WizardsWardrobe
 WW.zones["DG"] = {}
 local SUB = WW.zones["DG"]
 
-SUB.name = "Substitute Dungeon"
+SUB.name = GetString(WW_DG_NAME)
 SUB.tag = "DG"
 SUB.icon = "/WizardsWardrobeOverride/assets/green.dds"
 SUB.priority = -1
