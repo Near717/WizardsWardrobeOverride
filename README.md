@@ -1,3 +1,13 @@
+# Wizard's Wardrobe Override
+
+Dependencies:
+
+[Wizard's Wardrobe](https://www.esoui.com/downloads/info3170-WizardsWardrobe.html)
+
+[Wizard's Wardrobe Dungeons Extension](https://www.esoui.com/downloads/info3845-WizardsWardrobeDungeonsExtension.html)
+
+## Removing icons
+
 WizardsWardrobePreview.lua
 
     @@ function WWP.CreatePreviewWindow()
@@ -17,20 +27,18 @@ WizardsWardrobePreview.lua
             icon:SetDimensions(80, 80)
             icon:SetAnchor(CENTER, iconBox, CENTER, 0, 0) ]]
 
-
 WizardsWardrobeGui.lua
 
     @@ function WWG.SetSceneManagement()
 
     line 160:
         --[[ CALLBACK_MANAGER:RegisterCallback( "LAM-PanelControlsCreated", function( panel )
-        		if panel:GetName() ~= "WizardsWardrobeMenu" then return end
-        		local icon = WINDOW_MANAGER:CreateControl( "WizardsWardrobeMenuIcon", panel, CT_TEXTURE )
-        		icon:SetTexture( "/WizardsWardrobe/assets/icon64.dds" )
-        		icon:SetDimensions( 64, 64 )
-        		icon:SetAnchor( TOPRIGHT, panel, TOPRIGHT, -45, -25 )
-        	end ) ]]
-
+          if panel:GetName() ~= "WizardsWardrobeMenu" then return end
+                local icon = WINDOW_MANAGER:CreateControl( "WizardsWardrobeMenuIcon", panel, CT_TEXTURE )
+                icon:SetTexture( "/WizardsWardrobe/assets/icon64.dds" )
+                icon:SetDimensions( 64, 64 )
+                icon:SetAnchor( TOPRIGHT, panel, TOPRIGHT, -45, -25 )
+            end ) ]]
 
 WizardsWardrobe.xml
 
@@ -40,11 +48,11 @@ WizardsWardrobe.xml
     	<Anchor point="LEFT" relativeTo="$(parent)" relativePoint="LEFT" offsetX="10" />
     </Texture> -->
     <Label name="$(parent)TopLabel" font="ZoFontGameBold" verticalAlignment="TEXT_ALIGN_CENTER">
-    	<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="10" offsetY="7" />
+        <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="10" offsetY="7" />
     </Label>
     <Label name="$(parent)MiddleLabel" font="ZoFontGameBold" verticalAlignment="TEXT_ALIGN_CENTER">
-    	<Anchor point="LEFT" relativeTo="$(parent)" relativePoint="LEFT" offsetX="10" />
+        <Anchor point="LEFT" relativeTo="$(parent)" relativePoint="LEFT" offsetX="10" />
     </Label>
     <Label name="$(parent)BottomLabel" font="ZoFontGameBold" verticalAlignment="TEXT_ALIGN_CENTER">
-    	<Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT" offsetX="10" offsetY="-7" />
+        <Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT" offsetX="10" offsetY="-7" />
     </Label>
