@@ -11,20 +11,21 @@ local WWG = WW.gui
 
 -- local originalLoadSetupSubstitute = WW["LoadSetupSubstitute"]
 local function myLoadSetupSubstitute( index )
-	if not WW.zones[ "SUB" ] or not WW.pages[ "SUB" ] then return end
+	local DO_NOT_SKIP_VALIDATION = false
 
-	local isTrial = false
 	for _, value in pairs(WW.zones) do
-		if value.id == WW.currentZoneId and value.trial == true then
-			isTrial = true
-			WW.LoadSetup( WW.zones[ "SUB" ], WW.pages[ "SUB" ][ 0 ].selected, index, true )
+		if value.id == WW.currentZoneId then
+
+			if value.category == WW.ACTIVITIES.TRIALS then
+				if not WW.zones[ "SUB" ] or not WW.pages[ "SUB" ] then return end
+				WW.LoadSetup( WW.zones[ "SUB" ], WW.pages[ "SUB" ][ 0 ].selected, index, true, DO_NOT_SKIP_VALIDATION )
+			elseif WW.settings.substitute.dungeons == true and (value.category == WW.ACTIVITIES.DUNGEONS or value.category == WW.ACTIVITIES.DLC_DUNGEONS) then
+				if not WW.zones[ "DG" ] or not WW.pages[ "DG" ] then return end
+				WW.LoadSetup( WW.zones[ "DG" ], WW.pages[ "DG" ][ 0 ].selected, index, true, DO_NOT_SKIP_VALIDATION )
+			end
+
 			break
 		end
-	end
-
-	if isTrial == false and WW.settings.substitute.dungeons == true then
-		if not WW.zones[ "DG" ] or not WW.pages[ "DG" ] then return end
-		WW.LoadSetup( WW.zones[ "DG" ], WW.pages[ "DG" ][ 0 ].selected, index, true )
 	end
 end
 
@@ -33,9 +34,10 @@ end
 -- local originalOnZoneSelect = WWG["OnZoneSelect"]
 local function myOnZoneSelect( zone )
 	PlaySound( SOUNDS.TABLET_PAGE_TURN )
-
+	local node = WWG.tree.tree:GetTreeNodeByData( zone )
 	if not WW.pages[ zone.tag ] then
-		WWG.CreatePage( zone, true )
+		local DO_NOT_REFRESH_TREE = false
+		WWG.CreatePage( zone, true, DO_NOT_REFRESH_TREE )
 	end
 
 	WW.selection.zone = zone
@@ -56,16 +58,21 @@ local function myOnZoneSelect( zone )
 		or zone.tag == "SUB"
 		or zone.tag == "DG"
 		or zone.tag == "PVP" then
-		WizardsWardrobeWindowTopMenuTeleportTrial:SetHidden( true )
-		WizardsWardrobeWindowTopMenuTeleportHouse:SetHidden( false )
+		WizardsWardrobeWindowTopMenuButtonsTeleportTrial:SetHidden( true )
+		WizardsWardrobeWindowTopMenuButtonsTeleportHouse:SetHidden( false )
 	else
-		WizardsWardrobeWindowTopMenuTeleportTrial:SetHidden( false )
-		WizardsWardrobeWindowTopMenuTeleportHouse:SetHidden( true )
+		WizardsWardrobeWindowTopMenuButtonsTeleportTrial:SetHidden( false )
+		WizardsWardrobeWindowTopMenuButtonsTeleportHouse:SetHidden( true )
 	end
 
-	WizardsWardrobeWindowTopMenuTeleportTrial:SetEnabled( not IsInAvAZone() )
-	WizardsWardrobeWindowTopMenuTeleportTrial:SetDesaturation( IsInAvAZone() and 1 or 0 )
-	WizardsWardrobeWindowTopMenuTeleportHouse:SetEnabled( not IsInAvAZone() )
+	WizardsWardrobeWindowTopMenuButtonsTeleportTrial:SetEnabled( not IsInAvAZone() )
+	WizardsWardrobeWindowTopMenuButtonsTeleportTrial:SetDesaturation( IsInAvAZone() and 1 or 0 )
+	WizardsWardrobeWindowTopMenuButtonsTeleportHouse:SetEnabled( not IsInAvAZone() )
+	--WizardsWardrobeWindowZone:SetHidden( true )
+	WizardsWardrobeWindowTopMenuButtonsZoneSelect:SetText( zone.name )
+	if node then
+		WWG.tree.tree:SelectNode( node )
+	end
 end
 
 -- local originalAquireSetupControl = WWG["AquireSetupControl"]
@@ -99,7 +106,8 @@ local function myAquireSetupControl( setup )
 	setupControl.name:SetHandler( "OnMouseUp", function( self, mouseButton )
 		if not MouseIsOver( self, 0, 0, 0, 0 ) then return end
 		if mouseButton == MOUSE_BUTTON_INDEX_LEFT then
-			WW.LoadSetupCurrent( index, false )
+			local DO_NOT_SKIP_VALIDATION = false
+			WW.LoadSetupCurrent( index, false, DO_NOT_SKIP_VALIDATION )
 		end
 	end )
 
@@ -167,11 +175,18 @@ local function myAquireSetupControl( setup )
 					-- Prevent ult on normal slot and vice versa
 					return
 				end
-
-				if progression:IsChainingAbility() then
-					abilityId = GetEffectiveAbilityIdForAbilityOnHotbar( abilityId, hotbarCategory )
+				local apiVersion = GetAPIVersion()
+				if apiVersion >= 101042 then
+					if not progression:GetSkillData():IsCraftedAbility() then
+						if progression:IsChainingAbility() then
+							abilityId = GetEffectiveAbilityIdForAbilityOnHotbar( abilityId, hotbarCategory )
+						end
+					end
+				else
+					if progression:IsChainingAbility() then
+						abilityId = GetEffectiveAbilityIdForAbilityOnHotbar( abilityId, hotbarCategory )
+					end
 				end
-
 				ClearCursor()
 
 				setup = Setup:FromStorage( WW.selection.zone.tag, WW.selection.pageId, index )
@@ -405,6 +420,9 @@ local function myBuildPage( zone, pageId, scroll )
 	for entry in WW.PageIterator( zone, pageId ) do
 		local setup = Setup:FromStorage( zone.tag, pageId, entry.index )
 		local control = WWG.AquireSetupControl( setup )
+		if control.highlight then
+			control.highlight:SetHidden( true )
+		end
 	end
 	if (zone.tag == "SUB" or zone.tag == "DG") and #WWG.setupTable == 0 then
 		WWG.CreateDefaultSetups( zone, pageId )

@@ -5,9 +5,10 @@ local SUB = WW.zones["DG"]
 SUB.name = GetString(WW_DG_NAME)
 SUB.tag = "DG"
 SUB.icon = "/WizardsWardrobeOverride/assets/green.dds"
-SUB.priority = -1
+SUB.priority = -2
 SUB.id = -1
 SUB.node = -1
+SUB.category = WW.ACTIVITIES.MISC
 
 SUB.bosses = {
 	[1] = {
