@@ -3,7 +3,7 @@
 ## Description: Overrides functions to support substitute setups for dungeons
 ## Version: 1.3.0
 ## APIVersion: 101041 101042
-## DependsOn: WizardsWardrobe>=1180 WizardsWardrobeDungeons>=3
+## DependsOn: WizardsWardrobe>=1180 WizardsWardrobeDungeons
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates.
 ## The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States and/or other countries.
@@ -14,6 +14,11 @@
 lang/en.lua
 
 zones/DG.lua
+zones/PVP.lua
+zones/SUB.lua
 # zones/EA.lua
+zones/arenas/DSA.lua
+zones/arenas/MSA.lua
+zones/arenas/VH.lua
 
 WizardsWardrobeOverride.lua
