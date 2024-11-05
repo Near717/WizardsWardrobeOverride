@@ -38,6 +38,9 @@ local strings = {
 	WW_VH_WOUNDING_2 = "Xobutar of His Deep Graces",
 	WW_VH_WOUNDING_3 = "Iozuzzunth",
 	WW_VH_FINAL = "Maebroogha the Void Lich",
+
+	WWD_SH_B1="Riftmaster Naqri",
+	WWD_OP_B1="Packmaster Rethelros",
 }
 
 for stringId, stringValue in pairs(strings) do
