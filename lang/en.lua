@@ -39,6 +39,24 @@ local strings = {
 	WWO_VH_WOUNDING_2 = "Xobutar of His Deep Graces",
 	WWO_VH_WOUNDING_3 = "Iozuzzunth",
 	WWO_VH_FINAL = "Maebroogha the Void Lich",
+
+	-- Dungeons
+
+	WWO_ER_NAME = "Exiled Redoubt",
+	WWO_ER_BOSS1 = "Guard Captain Paratius",
+	WWO_ER_BOSS2 = "Executioner Jerensi",
+	WWO_ER_BOSS3 = "Docent Domitius",
+	WWO_ER_BOSS4 = "Prime Sorcerer Vandorallen",
+	WWO_ER_BOSS5 = "Eliana Albus",
+	WWO_ER_BOSS6 = "Squall of Retribution",
+
+	WWO_LS_NAME = "Lep Seclusa",
+	WWO_LS_BOSS1 = "Lewin Freys",
+	WWO_LS_BOSS2 = "Garvin the Tracker",
+	WWO_LS_BOSS3 = "Siege Master Malthoras",
+	WWO_LS_BOSS4 = "Noriwen",
+	WWO_LS_BOSS5 = "Flamedancer Ajim-Rei",
+	WWO_LS_BOSS6 = "Orpheon the Tactician",
 }
 
 for stringId, stringValue in pairs(strings) do

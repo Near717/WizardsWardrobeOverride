@@ -20,5 +20,7 @@ zones/SUB.lua
 zones/arenas/DSA.lua
 zones/arenas/MSA.lua
 zones/arenas/VH.lua
+zones/dungeons/ER.lua
+zones/dungeons/LS.lua
 
 WizardsWardrobeOverride.lua
