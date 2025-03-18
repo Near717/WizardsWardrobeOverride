@@ -15,31 +15,31 @@ MSA.bosses = {
 		name = GetString(WW_TRASH),
 	},
 	[2] = {
-		name = GetString(WW_MSA_ROUND_1),
+		name = GetString(WWO_MSA_ROUND_1),
 	},
 	[3] = {
-		name = GetString(WW_MSA_ROUND_2),
+		name = GetString(WWO_MSA_ROUND_2),
 	},
 	[4] = {
-		name = GetString(WW_MSA_ROUND_3),
+		name = GetString(WWO_MSA_ROUND_3),
 	},
 	[5] = {
-		name = GetString(WW_MSA_ROUND_4),
+		name = GetString(WWO_MSA_ROUND_4),
 	},
 	[6] = {
-		name = GetString(WW_MSA_ROUND_5),
+		name = GetString(WWO_MSA_ROUND_5),
 	},
 	[7] = {
-		name = GetString(WW_MSA_ROUND_6),
+		name = GetString(WWO_MSA_ROUND_6),
 	},
 	[8] = {
-		name = GetString(WW_MSA_ROUND_7),
+		name = GetString(WWO_MSA_ROUND_7),
 	},
 	[9] = {
-		name = GetString(WW_MSA_ROUND_8),
+		name = GetString(WWO_MSA_ROUND_8),
 	},
 	[10] = {
-		name = GetString(WW_MSA_ROUND_9),
+		name = GetString(WWO_MSA_ROUND_9),
 	},
 }
 

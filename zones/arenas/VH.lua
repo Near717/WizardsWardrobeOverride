@@ -15,34 +15,34 @@ VH.bosses = {
 		name = GetString(WW_TRASH),
 	},
 	[2] = {
-		name = GetString(WW_VH_HUNTERS_1),
+		name = GetString(WWO_VH_HUNTERS_1),
 	},
 	[3] = {
-		name = GetString(WW_VH_HUNTERS_2),
+		name = GetString(WWO_VH_HUNTERS_2),
 	},
 	[4] = {
-		name = GetString(WW_VH_HUNTERS_3),
+		name = GetString(WWO_VH_HUNTERS_3),
 	},
 	[5] = {
-		name = GetString(WW_VH_BRIMSTONE_1),
+		name = GetString(WWO_VH_BRIMSTONE_1),
 	},
 	[6] = {
-		name = GetString(WW_VH_BRIMSTONE_2),
+		name = GetString(WWO_VH_BRIMSTONE_2),
 	},
 	[7] = {
-		name = GetString(WW_VH_BRIMSTONE_3),
+		name = GetString(WWO_VH_BRIMSTONE_3),
 	},
 	[8] = {
-		name = GetString(WW_VH_WOUNDING_1),
+		name = GetString(WWO_VH_WOUNDING_1),
 	},
 	[9] = {
-		name = GetString(WW_VH_WOUNDING_2),
+		name = GetString(WWO_VH_WOUNDING_2),
 	},
 	[10] = {
-		name = GetString(WW_VH_WOUNDING_3),
+		name = GetString(WWO_VH_WOUNDING_3),
 	},
 	[11] = {
-		name = GetString(WW_VH_FINAL),
+		name = GetString(WWO_VH_FINAL),
 	},
 }
 
