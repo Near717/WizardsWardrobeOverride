@@ -33,6 +33,10 @@ end
 
 -- local originalOnZoneSelect = WWG["OnZoneSelect"]
 local function myOnZoneSelect( zone )
+	if (WW.currentZoneId ~= 0) then
+		WW.storage.selectedZoneTag = zone.tag
+	end
+
 	PlaySound( SOUNDS.TABLET_PAGE_TURN )
 	local node = WWG.tree.tree:GetTreeNodeByData( zone )
 	if not WW.pages[ zone.tag ] then
@@ -178,12 +182,12 @@ local function myAquireSetupControl( setup )
 				local apiVersion = GetAPIVersion()
 				if apiVersion >= 101042 then
 					if not progression:GetSkillData():IsCraftedAbility() then
-						if progression:IsChainingAbility() then
+						if progression.IsChainingAbility and progression:IsChainingAbility() then
 							abilityId = GetEffectiveAbilityIdForAbilityOnHotbar( abilityId, hotbarCategory )
 						end
 					end
 				else
-					if progression:IsChainingAbility() then
+					if progression.IsChainingAbility and progression:IsChainingAbility() then
 						abilityId = GetEffectiveAbilityIdForAbilityOnHotbar( abilityId, hotbarCategory )
 					end
 				end
@@ -446,8 +450,11 @@ local function myShowPageContextMenu( control )
 
 	AddMenuItem( GetString( WW_BUTTON_RENAME ), function() WWG.RenamePage() end, MENU_ADD_OPTION_LABEL )
 
+	AddMenuItem( GetString( WW_BUTTON_REARRANGE_PAGES ), function() WWG.ShowPageArrangeDialog( zone, pageId ) end,
+		MENU_ADD_OPTION_LABEL )
+
 	if WW.selection.zone.tag ~= "SUB" and WW.selection.zone.tag ~= "DG" then
-		AddMenuItem( GetString( WW_BUTTON_REARRANGE ), function() WWG.ShowArrangeDialog( zone, pageId ) end,
+		AddMenuItem( GetString( WW_BUTTON_REARRANGE_SETUPS ), function() WWG.ShowSetupArrangeDialog( zone, pageId ) end,
 			MENU_ADD_OPTION_LABEL )
 	end
 
