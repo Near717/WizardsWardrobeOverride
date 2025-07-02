@@ -498,6 +498,9 @@ local function myShowSetupContextMenu( control, index )
 	AddMenuItem( GetString( WW_CUSTOMCODE ), function() WW.code.ShowCodeDialog( zone, pageId, index ) end,
 		MENU_ADD_OPTION_LABEL )
 
+	-- DUPLICATE
+	AddMenuItem( GetString( WW_DUPLICATE ), function() WW.DuplicateSetup( zone, pageId, index ) end, MENU_ADD_OPTION_LABEL )
+
 	-- IMPORT / EXPORT
 	AddMenuItem( GetString( WW_IMPORT ), function() WW.transfer.ShowImportDialog( zone, pageId, index ) end,
 		MENU_ADD_OPTION_LABEL )
