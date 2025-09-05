@@ -51,7 +51,7 @@ local strings = {
 	WWO_ER_BOSS6 = "Squall of Retribution",
 
 	WWO_LS_NAME = "Lep Seclusa",
-	WWO_LS_BOSS1 = "Lewin Freys",
+	WWO_LS_BOSS1 = "Lewin Frey",
 	WWO_LS_BOSS2 = "Garvin the Tracker",
 	WWO_LS_BOSS3 = "Siege Master Malthoras",
 	WWO_LS_BOSS4 = "Noriwen",
